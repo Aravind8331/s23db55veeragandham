@@ -38,8 +38,8 @@ res.send(`{"error": ${err}}`);
 // Handle a show all view
 exports.electronics_view_all_Page = async function(req, res) {
     try{
-    theelectronics = await electronics.find();
-    res.render('electronics', { title: 'electronics Search Results', results: theelectronics });
+    electronics = await electronics.find();
+    res.render('electronics', { title: 'electronics Search Results', results: electronics });
     }
     catch(err){
     res.status(500);
@@ -51,9 +51,22 @@ exports.electronics_view_all_Page = async function(req, res) {
 
 
 // for a specific electronics.
-exports.electronics_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: electronics detail: ' + req.params.id);
-};
+
+// for a specific eletronics.
+// exports.eletronics_detail = function(req, res) {
+// res.send('NOT IMPLEMENTED: eletronicsdetail: ' + req.params.id);
+// };
+// for a specific eletronics.
+exports.eletronics_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await eletronics.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    }
 // Handle electronics create on POST.
 // exports.electronics_create_post = function(req, res) {
 // res.send('NOT IMPLEMENTED: electronics create POST');
