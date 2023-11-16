@@ -12,7 +12,8 @@ var chooseRouter = require('./routes/choose');
 var resourceRouter = require('./routes/resource');
 
 require('dotenv').config();
-const connectionString = process.env.MONGO_CON
+const connectionString = 'mongodb+srv://vr12082002:Aravind1234@cluster0.sjcgdpb.mongodb.net/?retryWrites=true&w=majority';
+
 mongoose = require('mongoose');
 mongoose.connect(connectionString);
 
