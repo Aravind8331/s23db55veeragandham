@@ -1,0 +1,23 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+  h2 No instance to detail
+ else
+  - let electronicsid = toShow._id
+  - let type = toShow.type
+  - let Manufacturer = toShow.Manufacturer
+  - let cost = toShow.cost
+  div
+    div.row
+      div(class='electronicsAttr mr-3') electronics ID is:
+      div #{electronicsid}
+    div.row
+      div(class='electronicsAttr mr-3') electronics type is:
+      div #{type}
+    div.row
+      div(class='electronicsAttr mr-3') electronics Manufacturer is:
+      div #{Manufacturer}
+    div.row
+      div(class='electronicsAttr mr-3') electronics cost is:
+      div #{cost}

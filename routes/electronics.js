@@ -8,4 +8,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/', electronics_controlers.electronics_view_all_Page);
 
+/* GET detail electronics page */
+router.get('/detail', electronics_controlers.electronics_view_one_Page);
+
 module.exports = router;
