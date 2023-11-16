@@ -50,10 +50,7 @@ exports.electronics_view_all_Page = async function(req, res) {
 exports.electronics_create_post = async function(req, res) {
     console.log(req.body)
     let document = new electronics();
-    // We are looking for a body, since POST does not have query parameters.
-    // Even though bodies can be in many different formats, we will be picky
-    // and require that it be a json object
-    // {"electronics_type":"goat", "cost":12, "size":"large"}
+    
     document.type = req.body.type;
     document.Manufacturer = req.body.Manufacturer;
     document.cost = req.body.cost;
@@ -138,4 +135,20 @@ exports.electronics_create_Page = function(req, res) {
     res.status(500)
     res.send(`{'error': '${err}'}`);
     }
+    };
+
+    // Handle building the view for updating a electronics.
+// query provides the id
+exports.electronics_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await electronics.findById(req.query.id)
+    res.render('electronicsupdate', { title: 'electronics Update', toShow: result });
     }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+    
+    
