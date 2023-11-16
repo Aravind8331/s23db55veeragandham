@@ -11,4 +11,7 @@ router.get('/', electronics_controlers.electronics_view_all_Page);
 /* GET detail electronics page */
 router.get('/detail', electronics_controlers.electronics_view_one_Page);
 
+/* GET create electronics page */
+router.get('/create', electronics_controlers.electronics_create_Page);
+
 module.exports = router;
