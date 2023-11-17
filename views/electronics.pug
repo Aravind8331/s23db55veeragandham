@@ -1,21 +1,20 @@
 extends layout
-
+ 
 block content
-  h1 This is electronics.pug page
-  p Welcome to Pug #{title}
-    - let items = results
-
-     div.container-fluid
-    div.row
-        each item,index in items
-            div.col-sm-2
-            div
-            div(class="col-sm-2" onclick=`buy (${index})`) Type: #{item.type}
-            div(class="col-sm-2" onclick=`buy (${index})`) Manufacturer: #{item.Manufacturer}
-            div(class="col-sm-2" onclick=`buy (${index})`) Cost: $#{item.cost}
-    script.
-      function buy(itemNum){
-        alert(`you purchased item ${itemNum+1}`)
-     }
-
-  
+  h1= title
+  - let items = results
+  div(claass="container-fluid mt-3")
+   div(class="row m-1")
+    each item,index in items
+     - let destination = `dispatch(\"/electronics/update?id=${item._id}\")`
+      div(class="col-sm-3 bg-info m-2 p-4" onclick=`buy(${index})`) #{item.type} - #{item.Manufacturer} - #{item.cost}
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+   function buy(itemNo)
+   {
+     alert(`You purchased Item ${itemNo+1}`)
+   }
+   function dispatch(path)
+   {
+     window.location.href=path
+   }
