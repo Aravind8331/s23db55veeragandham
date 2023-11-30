@@ -1,20 +1,27 @@
 extends layout
- 
+
 block content
   h1= title
   - let items = results
-  div(claass="container-fluid mt-3")
-   div(class="row m-1")
-    each item,index in items
-     - let destination = `dispatch(\"/electronics/update?id=${item._id}\")`
-      div(class="col-sm-3 bg-info m-2 p-4" onclick=`buy(${index})`) #{item.type} - #{item.Manufacturer} - #{item.cost}
-      button.btn( class="btn-primary ml-1", onclick= destination) Update
+  div(class="container-fluid mt-3")
+    - let destination = `dispatch("/electronics/create")`
+    p.create-btn-container
+      button.btn.btn-success.mb-3(onclick=destination) Create new electronics item
+    div(class="row m-1")
+      each item, index in items
+        - let destination1 = `dispatch("/electronics/update?id=${item._id}")`
+        - let destination2 = `dispatch("/electronics/detail?id=${item._id}")`
+        - let destination3 = `dispatch("/electronics/delete?id=${item._id}")`
+        div(class="col-sm-3 bg-info m-2 p-4", onclick=`buy(${index})`) #{item.type} - #{item.Manufacturer} - #{item.cost}
+        button.btn(class="btn-primary ml-1", onclick=destination1) Update
+        button.btn(class="btn-primary ml-1", onclick=destination2) Detail
+        button.btn(class="btn-primary ml-1", onclick=destination3) Delete 
   script.
-   function buy(itemNo)
-   {
-     alert(`You purchased Item ${itemNo+1}`)
-   }
-   function dispatch(path)
-   {
-     window.location.href=path
-   }
+    function buy(itemNo)
+    {
+      alert(`You purchased Item ${itemNo + 1}`)
+    }
+    function dispatch(path)
+    {
+      window.location.href = path
+    }

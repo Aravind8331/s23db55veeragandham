@@ -1,23 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} 
+ if (!user)
+   a(href="/login") Login
+   br
+   a(href="/register") Register
+ if (user)
+   p You are currently logged in as #{user.username}
+   a(href="/electronics") Take me to electronics 
+   br
+   a(href="/logout") Logout
 
-  button(type="button", class = "btn btn-secondary") Press Me
-
-  div.container
-  div#mphDisplay
-    | MPH #{mph} with change #{change}.
-  button(onclick='goFaster()') Go Faster
-  
-  script.
-    var mph = 20;
-    var change = 1;
-   function goFaster()
-    {
-       
-        mph =mph+change;
-        change++;
-        document.getElementById('mphDisplay').textContent = `MPH ${mph} with change ${change}`;
-    }
